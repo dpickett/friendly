@@ -30,29 +30,29 @@ describe "Creating the tables for a model" do
 
   it "creates a table for the document" do
     @table.keys.length.should == 5
-    @table[:added_id][:db_type].should == "int(11)"
+    @table[:added_id][:db_type].should == "integer"
     @table[:added_id][:primary_key].should be_true
-    @table[:id][:db_type].should == "binary(16)"
+    @table[:id][:db_type].should == "bytea"
     @table[:attributes][:db_type].should == "text"
-    @table[:created_at][:db_type].should == "datetime"
-    @table[:updated_at][:db_type].should == "datetime"
+    @table[:created_at][:db_type].should == "timestamp without time zone"
+    @table[:updated_at][:db_type].should == "timestamp without time zone"
   end
 
   it "creates a table for each index" do
     @index_table.keys.length.should == 3
-    @index_table[:name][:db_type].should == "varchar(255)"
+    @index_table[:name][:db_type].should == "text"
     @index_table[:name][:primary_key].should be_true
-    @index_table[:created_at][:db_type].should == "datetime"
+    @index_table[:created_at][:db_type].should == "timestamp without time zone"
     @index_table[:created_at][:primary_key].should be_true
-    @index_table[:id][:db_type].should == "binary(16)"
+    @index_table[:id][:db_type].should == "bytea"
     @index_table[:id][:primary_key].should be_true
   end
 
   it "knows how to create an index for a field of a custom type" do
     @id_index_table.keys.length.should == 2
-    @id_index_table[:user_id][:db_type].should == "binary(16)"
+    @id_index_table[:user_id][:db_type].should == "bytea"
     @id_index_table[:user_id][:primary_key].should be_true
-    @id_index_table[:id][:db_type].should == "binary(16)"
+    @id_index_table[:id][:db_type].should == "bytea"
     @id_index_table[:id][:primary_key].should be_true
   end
 
